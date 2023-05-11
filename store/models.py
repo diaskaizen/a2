@@ -14,7 +14,7 @@ class Customer(models.Model):
 	def __str__(self):
 		return self.email
 
-
+'''
 class ProductImage(models.Model):
     prddname = models.CharField(max_length=55)
     prdimg = models.ImageField(upload_to='img_prd/')
@@ -24,7 +24,7 @@ class ProductImage(models.Model):
 def img_def(instence, filename):
     imagename, extention = filename.split((','))
     return 'product/%s.%s'%(instence.id,extention)
-
+'''
 @ receiver(post_save, sender=User)
 def create_user_customer(sender, instance, created,**kwargs):
 	if created:
@@ -43,7 +43,7 @@ class Product(models.Model):
 	is_active = models.BooleanField()
 	digital = models.BooleanField(default=False, null=True, blank=True)
 	category = models.ForeignKey('Category', related_name='product', on_delete=models.CASCADE)
-	img = models.ImageField(upload_to='media/img_def')
+	image = models.ImageField(null=True, blank=True)
 	date_created = models.DateTimeField(auto_now_add=True)
 	date_updated = models.DateTimeField(auto_now=True)
 	stock = models.CharField(max_length=6, null=True, blank=True)
@@ -61,6 +61,14 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	@property
+	def imageURL(self):
+		try:
+			url = self.image.url
+		except:
+			url = ''
+		return url
 
 class Order(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
