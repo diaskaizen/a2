@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>profile edit</h1>
+<form action="" method="post">
+    {% csrf_token%}
+    {{ user_form}}
+    {{ customer_form}}
+    <input type="submit", value="edit profile">
+    <input type="submit",  value="edit profile", ><a href="#">store</a>
+</form>
+{% endblock %}
