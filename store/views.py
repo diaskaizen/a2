@@ -5,25 +5,8 @@ import json
 import datetime
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
-
 from django.views.generic import TemplateView
-
-
-def base(request):
-    return render(request, 'base_generic.html', {})
-
-
-def mybase(request):
-    return render(request, 'store/mybase.html', {})
-
-
-def about(request):
-    return render(request, 'store/about_us.html', {})
-
-
-def detail(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    return render(request, 'store/product_detail.html', {'product': product})
+from django.http import JsonResponse
 
 
 def store(request):
@@ -115,3 +98,19 @@ def processOrder(request):
 
     return JsonResponse('Payment submitted..', safe=False)
 
+
+def base(request):
+    return render(request, 'base_generic.html', {})
+
+
+def mybase(request):
+    return render(request, 'store/mybase.html', {})
+
+
+def about(request):
+    return render(request, 'store/about_us.html', {})
+
+
+def detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    return render(request, 'store/product_detail.html', {'product': product})

@@ -6,20 +6,20 @@ from .models import Product, Customer, Order, OrderItem, ShippingAddress, Catego
 
 class AdminCategory(admin.ModelAdmin):
 
-    list_display = ('category','date_add', 'catimg')
+    list_display = ('category','date_add')
 
 
 class CustomerAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'number_phone', 'email')
+    list_display = ('name', 'email')
 
 
 class AdminOrder(admin.ModelAdmin):
-    list_display = ('customer', 'date_ordered', 'complete')
+    list_display =['customer']
 
 
 class AdminOrderItem(admin.ModelAdmin):
-    list_display = ('product', 'order', 'quantity')
+    list_display = ('product', 'quantity')
 
 
 class AdminShippingAddress(admin.ModelAdmin):

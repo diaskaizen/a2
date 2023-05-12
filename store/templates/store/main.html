@@ -68,6 +68,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="{% static 'img/k93.png' %}">
 	  <a class="navbar-brand" href="{% url 'store:store' %}">Kon<span>Godwa</span></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -90,9 +91,31 @@
 	      </li>
 
 	    </ul>
+         <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-google"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-github"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                     <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-youtube"></i>
+                    </button>
 
 	    <div class="form-inline my-2 my-lg-0">
-	     	<a href="{% url 'login'%}?next={{request.path}}"class="btn btn-warning">Login</a>
+	     	<a href="{% url 'login'%}?next={{request.path}}"class="btn btn-warning fa fa-check" aria-hidden="true">Login</a>
 
 	     	<a href="{% url 'store:cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
@@ -126,11 +149,7 @@
     <div class="me-5 d-none d-lg-block">
       <span>Get connected with us on social networks:</span>
     </div>
-    <!-- Left -->
 
-    <!-- Copyright -->
-
-    <!-- Right -->
     <div><!-- Register buttons -->
                 <div class="text-center">
                     <button type="button" class="btn btn-link btn-floating mx-1">
@@ -148,7 +167,14 @@
                     <button type="button" class="btn btn-link btn-floating mx-1">
                         <i class="fab fa-github"></i>
                     </button>
-                    <i class="fa-solid fa-house"></i>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                     <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-youtube"></i>
+                    </button>
+
                 </div>
     </div>
     <!-- Right -->
@@ -183,16 +209,16 @@
             Products
           </h6>
           <p>
-            <a href="#!" class="text-reset">Angular</a>
+            <a href="#!" class="text-reset">website maker</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">React</a>
+            <a href="#!" class="text-reset">books pdf</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Vue</a>
+            <a href="#!" class="text-reset">python</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Laravel</a>
+            <a href="#!" class="text-reset">django</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -222,13 +248,13 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i class="fas fa-home me-3 btn btn-light btn-floating mx-1"></i>casablanca</p>
           <p>
-            <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            <i class="fas fa-envelope me-3 btn btn-light btn-floating mx-1"></i>
+            said@kongodwa.com
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 06 23 45 67 88</p>
-          <p><i class="fas fa-print me-3"></i> + 0 23 45 67 89</p>
+          <p><i class="fas fa-phone me-3 btn btn-info btn-light mx-1"></i> + 06 49 82 99 95 </p>
+          <p><i class="fas fa-print me-3 btn btn-info btn-light mx-1"></i> + 0 622 15 2 8</p>
         </div>
         <!-- Grid column -->
       </div>
@@ -239,8 +265,8 @@
 
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://kongodwa.com/">kongodwa.com</a>
+    © 2023 Copyright:
+    <a class="text-reset fw-bold btn btn-link btn-floating mx-1" href="https://kongodwa.com/">kongodwa.com</a>
   </div>
   <!-- Copyright -->
 </footer>

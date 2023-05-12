@@ -52,13 +52,11 @@ def dashboard(request):
 
     total_customers = customers.count()
     total_order = orders.count()
-    '''
-    delivered = orders.filter(status='Delivered').count()
-    pending = orders.filter(status='Pending').count()
 
-    'total_order': total_order,
-    'delivered': delivered, 'pending': pending '''
-    context = {'orders': orders, 'customers': customers, }
+    delivered = orders.filter(status= 'Delivered').count()
+    pending = orders.filter(status= 'Pending').count()
+    context = {'orders': orders, 'customers': customers, 'total_order': total_order,
+               'delivered': delivered, 'pending': pending}
 
     return render(request, 'accounts/dashboard.html',context)
 
@@ -81,7 +79,7 @@ def sign_up(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('home/')
+            return redirect('/')
 
     else:
         form = SignUpForm()
@@ -110,4 +108,4 @@ def profile_edit(request):
             'user_form': UserForm, 'profile_form': ProfileForm})
 @api_view(['GET'])
 def api_conf(request):
-    return Response('api works')
+    return Response('api works', safe=False)
