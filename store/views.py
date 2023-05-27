@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy, resolve
 import json
 import datetime
@@ -7,6 +7,38 @@ from .models import *
 from .utils import cookieCart, cartData, guestOrder
 from django.views.generic import TemplateView
 from django.http import JsonResponse
+from accounts.views import customer
+
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
+
+
+
+"""
+send_mail(
+    "Subject here",
+    "Here is the message.",
+    "from@example.com",
+    ["to@example.com"],
+    fail_silently=False,
+)
+"""
+
+def send_email(request):
+    subject = request.POST.get("subject", "")
+    message = request.POST.get("message", "")
+    from_email = request.POST.get("from_email", "")
+    if subject and message and from_email:
+        try:
+            send_mail(subject, message, from_email, ["so1255998@gmail.com"])
+        except BadHeaderError:
+            return HttpResponse("Invalid header found.")
+        return HttpResponseRedirect("/store")
+    else:
+        # In reality we'd use a form class
+        # to get proper validation errors.
+        return HttpResponse("Make sure all fields are entered and valid.")
+
 
 
 def store(request):
@@ -102,6 +134,9 @@ def processOrder(request):
 def base(request):
     return render(request, 'base_generic.html', {})
 
+
+def mydetail(request):
+    return render(request, 'store/detail_new.html', {})
 
 def mybase(request):
     return render(request, 'store/mybase.html', {})

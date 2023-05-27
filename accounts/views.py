@@ -61,8 +61,13 @@ def dashboard(request):
     return render(request, 'accounts/dashboard.html',context)
 
 
-def customer(request, pk_t):
-    customer = Customer.objects.get(id= pk_t)
+def customer(request):
+    customer = Customer.objects.all()
+    context = {'customer': customer}
+
+    return render(request, 'accounts/customer.html', context)
+def customer(request, id):
+    customer = Customer.objects.get(id= id)
     orders = customer.order_set.all()
     order_count = orders.count()
     context = {'customer': customer, 'orders': orders, 'order_count': order_count}
@@ -84,7 +89,7 @@ def sign_up(request):
     else:
         form = SignUpForm()
 
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'accounts/register.html', {'form': form})
 
 
 def profile_edit(request):
@@ -106,6 +111,7 @@ def profile_edit(request):
 
         return render(request, 'profile/profile_edit.html', {
             'user_form': UserForm, 'profile_form': ProfileForm})
+
 @api_view(['GET'])
 def api_conf(request):
     return Response('api works', safe=False)

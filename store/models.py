@@ -20,8 +20,8 @@ def img_def(instence, filename):
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=55)
-    phone = models.CharField(max_length=20, null=True)
-    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField(max_length=100)
 
     def __str__(self):
         return self.name

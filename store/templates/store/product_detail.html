@@ -1,24 +1,86 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-      <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Store</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
-  </ol>
-</div>
-<div>
-	<div class="col-lg-4">
-			<img class="img-fluid" alt="Responsive image"class="thumbnail" src="{{product.imageURL}}">
-			<div class="box-element product">
-				<h6><strong>{{product.name}}</strong></h6><hr>
-				<h4 style="display: inline-block; float: right"><strong>درهم{{product.price}}</strong></h4>
-			</div>
-		</div>
-        <a class="btn btn-outline-success" href="{% url 'store:store' %}">show more img</a>
 
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Store</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+    </ol>
 </div>
-<div class="row-sm">
-	<p>{{product.description}}</p>
+
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-5">
+                    <img class="thumbnail" src="{{product.imageURL}}">
+                    <div class="box-element product">
+                        <h6><strong>{{product.name}}</strong></h6>
+                        <hr>
+                        <h4 style="display: inline-block; float: right"><small>درهم{{product.price}}</small></h4>
+                    </div>
+
+                    <br>
+                    <div class="box-element hidden" id="payment-info">
+                        <small>Paypal Options</small>
+                        <!--<button id="make-payment">Make payment</button>-->
+                        <div id="paypal-button-container"></div>
+                    </div>
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title"><strong>{{product.name}}</strong></h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no">41 reviews</span>
+                    </div>
+                    <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia
+                        sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                    <h4 class="price">current price: <span>{{product.price}}</span></h4>
+                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                    <h5 class="sizes">sizes:
+                        <span class="size" data-toggle="tooltip" title="small">s</span>
+                        <span class="size" data-toggle="tooltip" title="medium">m</span>
+                        <span class="size" data-toggle="tooltip" title="large">l</span>
+                        <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                    </h5>
+                    <h5 class="colors">colors:
+                        <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+                        <span class="color green"></span>
+                        <span class="color blue"></span>
+                    </h5>
+                    <div class="action">
+                        <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 fixed-right">
+                <div class="box-element">
+                    <a class="btn btn-outline-dark" href="{% url 'store:cart' %}">&#x2190; Back to Cartالى القاىمة </a>
+                    <hr>
+                    <h3>Order Summary</h3>
+                    <hr>
+                    {% for item in items %}
+                    <div class="cart-row">
+                        <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                        <div style="flex:2"><p>{{item.product.name}}</p></div>
+                        <div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
+                        <div style="flex:1"><p>x{{item.quantity}}</p></div>
+                    </div>
+                    {% endfor %}
+                    <h5>Items: {{order.get_cart_items}}</h5>
+                    <h5>Total: ${{order.get_cart_total|floatformat:2}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-		{% endblock %}
+    {% endblock %}
