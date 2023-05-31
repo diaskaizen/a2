@@ -15,29 +15,23 @@ from django.conf import settings
 
 
 """
-send_mail(
-    "Subject here",
-    "Here is the message.",
-    "from@example.com",
-    ["to@example.com"],
-    fail_silently=False,
-)
 """
 
-def send_email(request):
-    subject = request.POST.get("subject", "")
-    message = request.POST.get("message", "")
-    from_email = request.POST.get("from_email", "")
-    if subject and message and from_email:
-        try:
-            send_mail(subject, message, from_email, ["so1255998@gmail.com"])
-        except BadHeaderError:
-            return HttpResponse("Invalid header found.")
-        return HttpResponseRedirect("/store")
+def contact(request):
+    if request.method == 'POST':
+
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+        from_email = request.POST.get("from_email")
+
+
+        send_mail(
+            subject, message, from_email, ["kanielaoutis990@gmail.com"],
+            fail_silently=False,
+        )
+        return render(request, 'contact.html', {'message':message})
     else:
-        # In reality we'd use a form class
-        # to get proper validation errors.
-        return HttpResponse("Make sure all fields are entered and valid.")
+        return render(request, 'contact.html', {})
 
 
 
